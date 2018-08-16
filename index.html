@@ -4,45 +4,102 @@
 
 <head>
     <title>I Can Click A Rainbow</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
 
     <body>
-        <h1>Hello World has been done</h1>
+        <h1>The Hello World has been done</h1>
         <p>I'm hosted with GitHub Pages. from July 25th</p>
         <button id='button'>click me</button>
         <script src='main.js'></script>
-            <script>
-      function DisplayCurrentTime() {
-          var date = new Date();
-          var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-          var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-          var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-          time = hours + ":" + minutes + ":" + seconds;
-          var currentTime = document.getElementById("currentTime");
-          currentTime.innerHTML = time;
-                document.addEventListener('DOMContentLoaded', function() {
-        DisplayCurrentTime();
-       
-      }, false);
-      };
-        DisplayCurrentTime();
-</script>
+        <script>
+            function DisplayCurrentTime() {
+                var date = new Date();
+                var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                var seconds = date.getSeconds() <
+                    10 ? "0" + date.getSeconds() : date.getSeconds();
+                time = hours + ":" + minutes + ":" + seconds;
+                var currentTime = document.getElementById("currentTime");
+                currentTime.innerHTML = time;
+            };
+
+            function GetReadings() {
+                nocache = "&nocache";
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function() {
+                        if (this.status == 200) {
+                            if (this.responseXML != null) {
+                                // XML file received - contains sensor readings
+                                var count;
+                                var num_an = this.responseXML.getElementsByTagName('reading').length;
+                                for (count = 0; count < num_an; count++) {
+                                    document.getElementsByClassName("reading")[count].innerHTML =
+                                        this.responseXML.getElementsByTagName('reading')[count].childNodes[0].nodeValue;
+                                }
+                            }
+                        }
+                    }
+                    // Send HTTP GET request to get the latest sensor readings
+                request.open("GET", "?update_readings" + nocache, true);
+                request.send(null);
+                DisplayCurrentTime();
+                setTimeout('GetReadings()', 10000);
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                DisplayCurrentTime();
+                GetReadings();
+            }, false);
+        </script>
         <style>
             body {
                 background-color: powderblue;
             }
             
-            tags
+            table {
+                border-collapse: collapse;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            th {
+                padding: 16px;
+                background-color: #0043af;
+                color: white;
+            }
+            
+            tr {
+                border: 1px solid #ddd;
+                padding: 16px;
+            }
+            
+            tr:hover {
+                background-color: #bcbcbc;
+            }
+            
+            td {
+                border: none;
+                padding: 16px;
+            }
+            
+            .sensor {
+                color: white;
+                font-weight: bold;
+                background-color: #bcbcbc;
+                padding: 8px;
+            }
         </style>
         <style>
             .container {
-                width: 960px;
+                width: 960 px;
                 margin-left: auto;
                 margin-right: auto;
             }
         </style>
-                <style>
+        <style>
             .container2 {
-                width: 960px;
+                width: 960 px;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -50,47 +107,96 @@
         <style>
             .position {
                 background-color: transparent;
-                width: 80px;
+                width: 80 px;
                 margin-left: 50%;
-                margin-right: 50%
+                margin-right: 50%;
             }
         </style>
-        <h1>My Raspberry Pi is Locally fed</h1>
-             <h3>Last update: <id="currentTime"></h3>
+        <h3>Last ate :
+            <span id="currentTime"></span></h3>
+        <table>
+            <tr>
+                <th>SENSOR</th>
+                <th>MEASUREMENT</th>
+                <th>VALUE</th>
+            </tr>
+            <tr>
+                <a class="link" href="192.168.137.145"> Celcius </a>
+                <td><span class="sensor">DHT</span></td>
+                <td>Temp. Celsius</td>
+                <td><span class="reading">...</span> *C</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">DHT</span></td>
+                <td>Temp. Fahrenheit</td>
+                <td><span class="reading">...</span> *F</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">DHT</span></td>
+                <td>Humidity</td>
+                <td><span class="reading">...</span> %</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">BMP180</span></td>
+                <td>Temp. Celsius</td>
+                <td><span class="reading">...</span> *C</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">BMP180</span></td>
+                <td>Temp. Fahrenheit</td>
+                <td><span class="reading">...</span> *F</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">BMP180</span></td>
+                <td>Pressure</td>
+                <td><span class="reading">...</span> Pa</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">POT</span></td>
+                <td>Position</td>
+                <td><span class="reading">...</span>/4095</td>
+            </tr>
+            <tr>
+                <td><span class="sensor">LDR</span></td>
+                <td>Luminosity</td>
+                <td><span class="reading">...</span>/4095</td>
+            </tr>
+        </table>
+        <h1>My Raspberry Pi is Locally fed
+        </h1>
+        </h3>
         <p>
-            <b>if no picture appears, then Pi is not connected</p>
-        </b>
+            <b>if no picture appears, then Pi is not connected </p>
+                                    </b>
             <p>
-                <img src="http://192.168.137.83/testimage.jpg">
+                <!-- img src="http://192.168.137.83/testimage.jpg"-->
             </p>
-
+            <div class="container">
+                <h3 id="my-name">above shows some settings from the ESP32
+                </h3>
+                <p class="text">It might be
+                    <b>amazing  </b>but who knows
+                </p>
+            </div>
+            <div class="position">
+                <img class="image" src="/images/javafx-loading-100x100.gif" )>
+                <img class="image" src="/images/twitterico.png>">
+            </div>
+            <div class="container2">
+                <input class="form" type="email" placeholder="Your email">
+                <input class="button" type="submit">
+                <p class="text">Follow me on Twitter
+                </p>
+                <!--Added text-->
+                <a class="link" href="http://twitter.com/FlyingSparkie">My Twitter  </a>
+            </div>
+            <div class="sidebar">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Duis turpis neque, volutpat ac consequat sed, ullamcorper at dolor.Donec placerat a mi quis ultricies.Etiam egestas semper tempor.Suspendisse nec eros porta, rhoncus tortor sed, consequat
+                    arcu.Suspendisse potenti.Nunc blandit nisl eu justo feugiat vestibulum.Vivamus consequat, quam vitae sagittis maximus, magna lacus fringilla justo, sit amet auctor mi nulla quis ante.Morbi malesuada gravida turpis, vel lobortis libero
+                    placerat sit amet.Vestibulum sollicitudin semper est eget ultricies.Donec posuere turpis urna.
+                </p>
+            </div>
     </body>
-    <div class="container">
- 
-        <h1 id="my-name">FSES tis smee</h1>
-        <p class="text">
-            It might be
-            <b>amazing</b> but who knows
-        </p>
-        <div class="position">
-            <img class="image" src = "/images/javafx-loading-100x100.gif")>
-            <img class="image" src="/images/twitterico.png>">
-        </div>
-
-        <div class = "container2">
-            <input class="form" type="email" placeholder="Your email">
-            <input class="button" type="submit">
-
-            <p class="text">Follow me on Twitter</p>
-            <!--Added text-->
-            <a class="link" href="http://twitter.com/FlyingSparkie">My Twitter</a>
-        </div>
-        <div class="sidebar">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis turpis neque, volutpat ac consequat sed, ullamcorper at dolor. Donec placerat a mi quis ultricies. Etiam egestas semper tempor. Suspendisse nec eros porta, rhoncus tortor sed, consequat
-                arcu. Suspendisse potenti. Nunc blandit nisl eu justo feugiat vestibulum. Vivamus consequat, quam vitae sagittis maximus, magna lacus fringilla justo, sit amet auctor mi nulla quis ante. Morbi malesuada gravida turpis, vel lobortis libero
-                placerat sit amet. Vestibulum sollicitudin semper est eget ultricies. Donec posuere turpis urna.
-            </p>
-        </div>
 
 </html>
 </head>
