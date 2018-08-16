@@ -19,6 +19,10 @@
           time = hours + ":" + minutes + ":" + seconds;
           var currentTime = document.getElementById("currentTime");
           currentTime.innerHTML = time;
+                document.addEventListener('DOMContentLoaded', function() {
+        DisplayCurrentTime();
+       
+      }, false);
       };
         DisplayCurrentTime();
 </script>
