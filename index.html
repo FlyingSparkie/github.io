@@ -10,6 +10,17 @@
         <p>I'm hosted with GitHub Pages. as of July 25th</p>
         <button id='button'>click me</button>
         <script src='main.js'></script>
+            <script>
+      function DisplayCurrentTime() {
+          var date = new Date();
+          var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+          var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+          var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+          time = hours + ":" + minutes + ":" + seconds;
+          var currentTime = document.getElementById("currentTime");
+          currentTime.innerHTML = time;
+      };
+</script>
         <style>
             body {
                 background-color: powderblue;
@@ -49,6 +60,7 @@
 
     </body>
     <div class="container">
+    DisplayCurrentTime();
         <h1 id="my-name">FSES tis smee</h1>
         <p class="text">
             It might be
