@@ -1,0 +1,132 @@
+/* css file for boiler plate */
+
+body {
+    background-color: rgb(36, 61, 129);
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    padding: 5px;
+    background-color: #e9df55;
+    color: rgb(99, 4, 252);
+}
+
+tr {
+    border: 2px solid #ddd;
+    padding: 16px;
+}
+
+
+/*tr:hover {
+    background-color: #831ac0;
+}
+*/
+
+td {
+    border: rgb(250, 4, 4);
+    padding: 16px;
+}
+
+.butborder {
+    color: rgb(233, 250, 0);
+    font-style: bold;
+    border-radius: 30%;
+    padding: 5px;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.butborder:hover {
+    background-color: forestgreen;
+}
+
+
+/*sensor {
+    color: rgb(241, 149, 12);
+    font-weight: bold;
+    background-color: #bcbcbc;
+    padding: 8px;
+}
+*/
+
+container {
+    width: auto 960 px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+container2 {
+    width: 960 px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+position {
+    background-color: transparent;
+    width: 80 px;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+.bold {
+    font-family: 'Lucida Sans Unicode';
+    text-size-adjust: 199%;
+    font-style: bold;
+}
+
+.italic {
+    /*font-family: 'Trebuchet MS', sans-serif;*/
+    font-style: italic;
+}
+
+#boxToMove {
+    position: relative;
+    stroke: red;
+    width: 300px;
+    height: 75px;
+    animation-name: boxMover;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: rgb(62, 12, 242) red;
+}
+
+.navbarButton {
+    width: auto;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 9px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.sidebar {
+    width: auto;
+    margin-left: 4%;
+    margin-right: 65%;
+    margin-top: 10px;
+    padding: 1px;
+    cursor: progress
+}
+
+@keyframes boxMover {
+    0% {
+        top: 0%;
+    }
+    25% {
+        top: 150px;
+    }
+    75% {
+        top: 0px;
+    }
+    100% {
+        top: 0px;
+    }
+    0% {
+        top: 00px;
+    }
+}
