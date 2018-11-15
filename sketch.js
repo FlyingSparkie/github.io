@@ -3,7 +3,7 @@
  * @description Orbit control allows you to drag and move around the world.
  */
 function setup(){
-  createCanvas(710, 400, WEBGL);
+  createCanvas(300, 200, WEBGL);
 }
 
 function draw(){
